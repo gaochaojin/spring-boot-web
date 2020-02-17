@@ -2,6 +2,7 @@ package com.gaochaojin.test;
 
 import com.gaochaojin.SpringbootWebApplication;
 import com.gaochaojin.devtools.SpringBootDevtools;
+import com.gaochaojin.entity.Student;
 import com.gaochaojin.model.Users;
 import com.gaochaojin.service.CommonService;
 import org.junit.Test;
@@ -32,7 +33,8 @@ public class MyTest {
     @Test
     public void test() {
         Users users = commonService.selectByPrimaryKey(1);
-
+        Student student = commonService.findById(1);
         logger.info(users.getUsername() + "  " + users.getPasswd());
+        logger.info(student.getName() + "  " + student.getCardNum());
     }
 }
