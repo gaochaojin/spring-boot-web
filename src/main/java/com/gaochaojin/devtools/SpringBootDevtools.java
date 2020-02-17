@@ -1,5 +1,8 @@
 package com.gaochaojin.devtools;
 
+import com.gaochaojin.druid.DruidConfig;
+import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -15,9 +18,9 @@ import org.springframework.context.ConfigurableApplicationContext;
  * @Date Created in 12:30 2020/2/14
  */
 @SpringBootApplication(scanBasePackages = {"com.gaochaojin"})
-//@Mapper("com.gaochaojin.dao")
+@MapperScan("com.gaochaojin.dao")
 @ServletComponentScan(basePackages = {"com.gaochaojin"})
-//@EnableConfigurationProperties(DruidConfig.class)
+@EnableConfigurationProperties(DruidConfig.class)
 public class SpringBootDevtools extends SpringBootServletInitializer {
 
     @Override
