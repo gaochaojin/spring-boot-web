@@ -3,6 +3,7 @@ package com.gaochaojin.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @Author: gaochaojin
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "t_student")
-public class Student {
+public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

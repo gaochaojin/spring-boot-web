@@ -6,6 +6,9 @@ import com.gaochaojin.dynamicDataSource.TargetDataSource;
 import com.gaochaojin.entity.Student;
 import com.gaochaojin.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -31,6 +34,7 @@ public class CommonServiceImpl implements CommonService {
         return usersMapper.selectByPrimaryKey(id);
     }
 
+    @Cacheable(value = "student",key = "#id")
     @Override
     public Student findById(Integer id){
         Optional<Student> optional = studentDao.findById(id);
@@ -38,5 +42,18 @@ public class CommonServiceImpl implements CommonService {
             return optional.get();
         }
         return null;
+    }
+
+    @CachePut(value = "student",key = "#student.id")
+    @Override
+    public Student save(Student student) {
+        Student student1 = studentDao.save(student);
+        return student1;
+    }
+
+    @CacheEvict(value = "student",key = "#id")
+    @Override
+    public void delete(Integer id) {
+        studentDao.deleteById(id);
     }
 }

@@ -17,4 +17,8 @@ public interface CommonService {
 
     public Student findById(Integer id);
 
+    public Student save(Student student);
+
+    public void delete(Integer id);
+
 }
